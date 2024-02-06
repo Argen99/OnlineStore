@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="288dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="8dp"
+    android:background="@drawable/bg_item_product">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="144dp"
+            android:layout_margin="4dp">
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/vp_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
+                android:id="@+id/spring_dots_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                app:dampingRatio="0.5"
+                app:dotsColor="@color/pink"
+                app:dotsCornerRadius="8dp"
+                app:dotsSize="4dp"
+                app:dotsSpacing="2dp"
+                app:dotsStrokeColor="@color/grey"
+                app:dotsStrokeWidth="2dp"
+                app:stiffness="300" />
+
+        </FrameLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_old_price"
+            style="@style/ElementText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/grey"
+            tools:text="312" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:gravity="center_vertical">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_product_price"
+                style="@style/Title2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="232 Р" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_price_discount"
+                style="@style/ElementText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/bg_rounded_corner"
+                android:paddingHorizontal="6dp"
+                android:paddingVertical="2dp"
+                android:textColor="@color/white"
+                tools:text="25%" />
+
+        </LinearLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_product_title"
+            style="@style/Title3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            tools:text="title" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_product_subtitle"
+            style="@style/Caption1"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_marginStart="8dp"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:textColor="@color/dark_grey"
+            tools:text="description" />
+
+        <LinearLayout
+            android:id="@+id/rating_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="invisible">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:src="@drawable/ic_star" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_rating"
+                style="@style/ElementText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:textColor="@color/orange"
+                tools:text="4.5" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_reviews_count"
+                style="@style/ElementText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:textColor="@color/grey"
+                tools:text="(42)" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/btn_favorite"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="end|top"
+        android:layout_margin="8dp"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/ic_heart_default" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_gravity="bottom|end"
+        android:background="@drawable/bg_product_add_to_cart_btn"
+        android:src="@drawable/ic_plus" />
+
+</FrameLayout>

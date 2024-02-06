@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.main.catalog.CatalogFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:elevation="0dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:titleTextColor="@color/black">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/inter_medium"
+                android:text="@string/title_catalog"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:overScrollMode="never"
+        android:layout_height="wrap_content"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="16dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_sort" />
+
+                    <com.skydoves.powerspinner.PowerSpinnerView
+                        android:id="@+id/spinnerView"
+                        style="@style/Title4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="По популярности"
+                        android:padding="10dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/dark_grey"
+                        app:spinner_arrow_drawable="@drawable/ic_down_arrow"
+                        app:spinner_arrow_gravity="end"
+                        app:spinner_arrow_padding="6dp"
+                        app:spinner_arrow_tint="@color/black"
+                        app:spinner_divider_color="@color/grey"
+                        app:spinner_divider_show="true"
+                        app:spinner_divider_size="0.4dp"
+                        app:spinner_item_array="@array/questions"
+                        app:spinner_popup_background="@color/white" />
+
+                </LinearLayout>
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Title4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:drawableStart="@drawable/ic_filter"
+                    android:drawablePadding="4dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/filter" />
+
+            </FrameLayout>
+
+            <HorizontalScrollView
+                android:id="@+id/categories_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:clipToPadding="false"
+                android:paddingHorizontal="16dp"
+                android:scrollbars="none">
+
+                <RadioGroup
+                    android:id="@+id/rg_categories"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" />
+
+            </HorizontalScrollView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_products"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:overScrollMode="never"
+                android:paddingStart="16dp"
+                android:paddingEnd="8dp" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <ProgressBar
+        android:id="@+id/progress_circular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminateTint="@color/pink"
+        android:visibility="gone" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

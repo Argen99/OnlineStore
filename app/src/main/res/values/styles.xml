@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="BaseTextView" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="LargeTitle1" parent="BaseTextView">
+        <item name="android:textSize">@dimen/large_title_1</item>
+        <item name="android:fontFamily">@font/sf_pro_display_medium</item>
+    </style>
+
+    <style name="Title1" parent="BaseTextView">
+        <item name="android:textSize">@dimen/title_1</item>
+        <item name="android:fontFamily">@font/sf_pro_display_medium</item>
+    </style>
+
+    <style name="Title2" parent="BaseTextView">
+        <item name="android:textSize">@dimen/title_2</item>
+        <item name="android:fontFamily">@font/sf_pro_display_medium</item>
+    </style>
+
+    <style name="Title3" parent="BaseTextView">
+        <item name="android:textSize">@dimen/title_3</item>
+        <item name="android:fontFamily">@font/sf_pro_display_medium</item>
+    </style>
+
+    <style name="Title4" parent="BaseTextView">
+        <item name="android:textSize">@dimen/title_4</item>
+        <item name="android:fontFamily">@font/sf_pro_display_regular</item>
+    </style>
+
+    <style name="Text1" parent="BaseTextView">
+        <item name="android:textSize">@dimen/text_1</item>
+        <item name="android:fontFamily">@font/sf_pro_display_regular</item>
+    </style>
+
+    <style name="Caption1" parent="BaseTextView">
+        <item name="android:textSize">@dimen/caption_1</item>
+        <item name="android:fontFamily">@font/sf_pro_display_regular</item>
+    </style>
+
+    <style name="ButtonText1" parent="BaseTextView">
+        <item name="android:textSize">@dimen/button_text_1</item>
+        <item name="android:fontFamily">@font/sf_pro_display_medium</item>
+    </style>
+
+    <style name="ButtonText2" parent="BaseTextView">
+        <item name="android:textSize">@dimen/button_text_2</item>
+        <item name="android:fontFamily">@font/sf_pro_display_medium</item>
+    </style>
+
+    <style name="ElementText" parent="BaseTextView">
+        <item name="android:textSize">@dimen/element_text</item>
+        <item name="android:fontFamily">@font/sf_pro_display_regular</item>
+    </style>
+
+    <style name="PriceText" parent="BaseTextView">
+        <item name="android:textSize">@dimen/price_text</item>
+        <item name="android:fontFamily">@font/sf_pro_display_medium</item>
+    </style>
+
+    <style name="PlaceholderText" parent="BaseTextView">
+        <item name="android:textSize">@dimen/placeholder_text</item>
+        <item name="android:fontFamily">@font/sf_pro_display_regular</item>
+    </style>
+
+    <style name="LinkText" parent="BaseTextView">
+        <item name="android:textSize">@dimen/link_text</item>
+        <item name="android:fontFamily">@font/sf_pro_display_regular</item>
+    </style>
+
+    <style name="AuthTextInputLayout" parent="Widget.Design.TextInputLayout">
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
+        <item name="hintEnabled">false</item>
+        <item name="endIconMode">clear_text</item>
+        <item name="endIconDrawable">@drawable/ic_clear</item>
+        <item name="android:background">@drawable/et_selector</item>
+    </style>
+
+    <style name="AuthTextInputEditText" parent="ThemeOverlay.Material3.TextInputEditText">
+        <item name="android:padding">16dp</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textSize">@dimen/placeholder_text</item>
+        <item name="android:fontFamily">@font/sf_pro_display_regular</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:maxLength">20</item>
+    </style>
+</resources>

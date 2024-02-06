@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.main.catalog.product_details.ProductDetailsFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:elevation="0dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center_vertical"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:titleTextColor="@color/black">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:src="@drawable/ic_arrow_back"
+                tools:ignore="ContentDescription" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="16dp"
+                android:background="@color/white"
+                android:src="@drawable/ic_share"
+                tools:ignore="ContentDescription" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:overScrollMode="never"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="368dp">
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/vp_product"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <ImageButton
+                    android:id="@+id/iv_favorite"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="end|top"
+                    android:background="@color/white"
+                    android:src="@drawable/ic_heart_default"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/ic_heart_default" />
+
+                <ImageButton
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="start|bottom"
+                    android:layout_marginBottom="16dp"
+                    android:background="@color/white"
+                    android:src="@drawable/ic_question"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/ic_question" />
+
+            </FrameLayout>
+
+            <com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
+                android:id="@+id/spring_dots_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                app:dampingRatio="0.5"
+                app:dotsColor="@color/pink"
+                app:dotsCornerRadius="8dp"
+                app:dotsSize="6dp"
+                app:dotsSpacing="4dp"
+                app:dotsStrokeColor="@color/grey"
+                app:dotsStrokeWidth="4dp"
+                app:stiffness="300" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_product_title"
+                style="@style/Title1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textColor="@color/grey"
+                tools:text="Title" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_product_subtitle"
+                style="@style/LargeTitle1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/black"
+                tools:text="Subtitle" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_product_count"
+                style="@style/Text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/grey"
+                tools:text="Count" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/light_grey" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatRatingBar
+                    android:id="@+id/rating_bar"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:progressTint="@color/orange"
+                    android:rating="4.5" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_rating"
+                    style="@style/Text1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:textColor="@color/grey"
+                    tools:text="rating" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_price"
+                    style="@style/PriceText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    tools:text="412" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_old_price"
+                    style="@style/Text1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:textColor="@color/grey"
+                    tools:text="812" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_discount"
+                    style="@style/ElementText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:background="@drawable/bg_rounded_corner"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="4dp"
+                    android:textColor="@color/white"
+                    tools:text="-32%" />
+
+            </LinearLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/Title1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/description"
+                android:textColor="@color/black" />
+
+            <LinearLayout
+                android:id="@+id/product_desc_container"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_go_to_brand"
+                    style="@style/Title2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/light_grey"
+                    android:drawableEnd="@drawable/ic_arrow_right"
+                    android:gravity="start|center_vertical"
+                    android:paddingVertical="8dp"
+                    android:paddingStart="8dp"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    app:cornerRadius="8dp"
+                    app:elevation="0dp"
+                    tools:ignore="RtlSymmetry"
+                    tools:text="Text" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_description"
+                    style="@style/Text1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/dark_grey"
+                    tools:text="description" />
+
+            </LinearLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_description_hide"
+                style="@style/ButtonText1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/grey"
+                android:text="@string/hide" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_product_info"
+                style="@style/Title1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/characteristic"
+                android:textColor="@color/black" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_product_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:overScrollMode="never" />
+
+            <FrameLayout
+                android:layout_marginTop="32dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_ingredients"
+                    style="@style/Title1"
+                    android:layout_gravity="start|center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ingredients"
+                    android:textColor="@color/black" />
+
+                <ImageButton
+                    android:src="@drawable/ic_copy"
+                    android:background="@color/white"
+                    android:layout_gravity="end|center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:ignore="ContentDescription" />
+
+            </FrameLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_ingredients_value"
+                style="@style/Text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textColor="@color/dark_grey"
+                tools:text="Состав" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_ingredients_more"
+                style="@style/ButtonText1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:paddingVertical="4dp"
+                android:text="@string/more"
+                android:textColor="@color/grey" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/btn_add_to_cart_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/bg_rounded_corner"
+                android:padding="16dp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/btn_price"
+                    style="@style/ButtonText2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="123" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/btn_old_price"
+                    style="@style/Caption1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:textColor="@color/light_pink"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/btn_price"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="123" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/btn_add_to_cart"
+                    style="@style/ButtonText2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add_to_cart"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <ProgressBar
+        android:id="@+id/progress_circular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminateTint="@color/pink"
+        android:visibility="gone" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

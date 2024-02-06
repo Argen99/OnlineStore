@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.auth.sign_up.SignUpFragment">
+
+    <com.google.android.material.textview.MaterialTextView
+        style="@style/Title1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginTop="16dp"
+        android:text="@string/title_sign_up_fragment" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:paddingHorizontal="16dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_user_name"
+            style="@style/AuthTextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_user_name"
+                style="@style/AuthTextInputEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_user_name" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_user_surname"
+            style="@style/AuthTextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_user_surname"
+                style="@style/AuthTextInputEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_user_surname" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_user_phone"
+            style="@style/AuthTextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:placeholderText="+7 ХХХ ХХХ-ХХ-ХХ"
+            app:placeholderTextColor="@color/grey">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_user_phone"
+                style="@style/AuthTextInputEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:digits="1234567890+()- "
+                android:hint="@string/hint_user_phone"
+                android:inputType="number"
+                android:maxLength="12"
+                android:maxLines="1" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_login"
+            style="@style/ButtonText2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/btn_selector"
+            android:paddingVertical="16dp"
+            android:enabled="false"
+            android:text="@string/login"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        style="@style/Caption1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:gravity="center_horizontal"
+        android:text="Нажимая кнопку “Войти”, Вы принимаете \n условия программы лояльности"
+        android:textColor="@color/grey" />
+
+</FrameLayout>

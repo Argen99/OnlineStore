@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">OnlineStore</string>
+    <string name="title_home">Главная</string>
+    <string name="title_catalog">Каталог</string>
+    <string name="title_cart">Корзина</string>
+    <string name="title_promotions">Акции</string>
+    <string name="title_profile">Профиль</string>
+    <string name="title_sign_up_fragment">Вход</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hint_user_name">Имя</string>
+    <string name="hint_user_surname">Фамилия</string>
+    <string name="hint_user_phone">Номер телефона</string>
+    <string name="login">Войти</string>
+    <string name="filter">Фильтры</string>
+    <string name="description">Описание</string>
+    <string name="ingredients">Состав</string>
+    <string name="more">Подробнее</string>
+    <string name="hide">Скрыть</string>
+    <string name="add_to_cart">Добавить в корзину</string>
+    <string name="characteristic">Характеристики</string>
+    <string name="personal_office">Личный кабинет</string>
+    <string name="exit">Выйти</string>
+</resources>

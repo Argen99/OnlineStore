@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="questions">
+        <item>По популярности</item>
+        <item>По уменьшению цены</item>
+        <item>По возрастанию цены</item>
+    </array>
+</resources>
