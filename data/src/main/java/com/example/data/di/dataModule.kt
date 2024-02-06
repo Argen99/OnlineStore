@@ -6,7 +6,7 @@ import com.example.data.local.room.ProductDataBase
 import com.example.data.local.room.ProductsDao
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
-import com.example.data.local.data_store.DataStoreRepositoryImpl
+import com.example.data.local.prefs.UserPreferences
 import com.example.data.remote.ProductRepositoryImpl
 import com.example.data.remote.ProductApiService
 import com.example.domain.repository.ProductRepository
@@ -20,12 +20,12 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 val dataModule = module {
-
-    singleOf(::DataStoreRepositoryImpl) {
-        bind<UserRepository>()
-    }
     singleOf(::ProductRepositoryImpl) {
         bind<ProductRepository>()
+    }
+
+    singleOf(::UserPreferences) {
+        bind<UserRepository>()
     }
     factoryOf(::provideOkHttpClient)
     factoryOf(::provideForecastApi)

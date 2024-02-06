@@ -7,6 +7,7 @@ import com.example.domain.use_case.AddToFavoritesUseCase
 import com.example.domain.use_case.GetFavoritesUseCase
 import com.example.domain.use_case.RemoveFromFavoritesUseCase
 import com.example.domain.use_case.GetUserDataUseCase
+import com.example.domain.use_case.SaveUserDataUseCase
 
 val domainModule = module {
 
@@ -15,4 +16,5 @@ val domainModule = module {
     factoryOf(::GetFavoritesUseCase)
     factoryOf(::RemoveFromFavoritesUseCase)
     factoryOf(::GetUserDataUseCase)
+    factoryOf(::SaveUserDataUseCase)
 }

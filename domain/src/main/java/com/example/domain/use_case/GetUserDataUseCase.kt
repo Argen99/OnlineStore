@@ -5,5 +5,5 @@ import com.example.domain.repository.UserRepository
 class GetUserDataUseCase(
     private val repository: UserRepository
 ) {
-    suspend operator fun invoke() = repository.getUserData()
+    operator fun invoke() = repository.getUserData()
 }
