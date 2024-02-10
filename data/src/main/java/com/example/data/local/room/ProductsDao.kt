@@ -15,11 +15,14 @@ interface ProductsDao {
     fun getProducts(): Flow<List<ProductDto>>
 
     @Query("SELECT COUNT(id) FROM products")
-    fun getCount(): Int
+    fun getCount(): Flow<Int>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addProduct(product: ProductDto)
 
     @Delete
-    fun deleteProduct(product: ProductDto)
+    suspend fun deleteProduct(product: ProductDto)
+
+    @Query("DELETE FROM products")
+    suspend fun deleteAll()
 }

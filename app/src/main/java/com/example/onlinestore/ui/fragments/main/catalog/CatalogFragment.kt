@@ -13,8 +13,10 @@ import com.example.onlinestore.core.base.BaseFragment
 import com.example.onlinestore.core.utils.Object.CATEGORIES
 import com.example.onlinestore.databinding.FragmentCatalogBinding
 import com.example.onlinestore.ui.adapter.ProductAdapter
+import com.example.onlinestore.ui.model.ProductUI
 import com.skydoves.powerspinner.OnSpinnerItemSelectedListener
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CatalogFragment :
     BaseFragment<FragmentCatalogBinding, CatalogViewModel>(R.layout.fragment_catalog) {
@@ -24,7 +26,7 @@ class CatalogFragment :
     }
 
     override val binding by viewBinding(FragmentCatalogBinding::bind)
-    override val viewModel by activityViewModel<CatalogViewModel>()
+    override val viewModel by viewModel<CatalogViewModel>()
 
     override fun initialize() {
 
@@ -80,12 +82,13 @@ class CatalogFragment :
         )
     }
 
-    private fun onFavoriteClick(product: ProductModel) {
+    private fun onFavoriteClick(product: ProductUI) {
         viewModel.onFavoriteClick(product)
     }
 
-    private fun onItemClick(id: String) {
-        viewModel.onItemClick(id)
-        findNavController().navigate(R.id.action_catalogFragment_to_productDetailsFragment)
+    private fun onItemClick(product: ProductUI) {
+        findNavController().navigate(
+            CatalogFragmentDirections.actionCatalogFragmentToProductDetailsFragment(product)
+        )
     }
 }

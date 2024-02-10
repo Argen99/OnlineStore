@@ -2,38 +2,80 @@ package com.example.onlinestore.ui.fragments.main.catalog.product_details
 
 import android.annotation.SuppressLint
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.isVisible
-import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.onlinestore.R
 import com.example.onlinestore.core.base.BaseFragment
+import com.example.onlinestore.core.extensions.getNoun
 import com.example.onlinestore.core.extensions.isEllipsized
 import com.example.onlinestore.databinding.FragmentProductDetailsBinding
 import com.example.onlinestore.ui.adapter.ImagePagerAdapter
 import com.example.onlinestore.ui.adapter.ProductInfoAdapter
-import com.example.onlinestore.ui.fragments.main.catalog.CatalogViewModel
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
-import org.koin.androidx.viewmodel.ext.android.activityViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class ProductDetailsFragment :
-    BaseFragment<FragmentProductDetailsBinding, CatalogViewModel>(R.layout.fragment_product_details) {
+    BaseFragment<FragmentProductDetailsBinding, ProductDetailsViewModel>(R.layout.fragment_product_details) {
 
     override val binding by viewBinding(FragmentProductDetailsBinding::bind)
-    override val viewModel by activityViewModel<CatalogViewModel>()
+    override val viewModel by viewModel<ProductDetailsViewModel>()
 
     private val infoAdapter: ProductInfoAdapter by lazy {
         ProductInfoAdapter()
     }
-
     private val imagePagerAdapter: ImagePagerAdapter by lazy {
         ImagePagerAdapter()
     }
+    private val args by navArgs<ProductDetailsFragmentArgs>()
 
     override fun initialize() {
+        constructViews()
+        setUIData()
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun setUIData() = with(args.product) {
+        binding.ivFavorite.setImageResource(
+            if (isFavorite) R.drawable.ic_heart_active
+            else R.drawable.ic_heart_default
+        )
+        binding.tvProductTitle.text = title
+        binding.tvProductSubtitle.text = subtitle
+        binding.tvProductCount.text =
+            "Доступно для заказа $available ${available.getNoun("штука", "штуки", "штук")}"
+        if (feedback != null) {
+            binding.ratingBar.rating = feedback.rating.toFloat()
+            binding.tvRating.text =
+                "${feedback.rating} · ${feedback.count}" +
+                        " ${feedback.count.getNoun("отзыв", "отзыва", "отзывов")}"
+        } else {
+            binding.ratingBar.rating = 0f
+        }
+        binding.tvPrice.text = "${price.priceWithDiscount}${price.unit}"
+        binding.tvOldPrice.text = "${price.price}${price.unit}"
+        binding.tvDiscount.text = "${price.discount}%"
+        binding.btnGoToBrand.text = title
+        binding.tvDescription.text = description
+
+        infoAdapter.submitList(info)
+        binding.tvIngredientsValue.text = ingredients
+        imagePagerAdapter.submitList(images)
+
+        binding.tvIngredientsValue.doOnLayout {
+            binding.tvIngredientsMore.isVisible =
+                binding.tvIngredientsValue.isEllipsized()
+        }
+        binding.btnPrice.text = price.priceWithDiscount
+        binding.btnOldPrice.text = price.price
+    }
+
+    private fun constructViews() {
         binding.rvProductInfo.apply {
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
@@ -67,43 +109,20 @@ class ProductDetailsFragment :
                 tvDescriptionHide.text = getString(R.string.hide)
             }
         }
-    }
 
-    @SuppressLint("SetTextI18n")
-    override fun launchObservers() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.currentProduct.collectLatest { data ->
-                data?.let { product ->
-                    binding.ivFavorite.setImageResource(
-                        if (product.isFavorite) R.drawable.ic_heart_active
-                        else R.drawable.ic_heart_default
-                    )
-                    binding.tvProductTitle.text = product.title
-                    binding.tvProductSubtitle.text = "Доступно для заказа ${product.available} штук"
-                    if (product.feedback != null) {
-                        binding.ratingBar.rating = product.feedback!!.rating.toFloat()
-                        binding.tvRating.text =
-                            "${product.feedback!!.rating} · ${product.feedback!!.count} отзыва"
-                    } else {
-                        binding.ratingBar.rating = 0f
-                    }
-                    binding.tvPrice.text = product.price.priceWithDiscount
-                    binding.tvOldPrice.text = product.price.price
-                    binding.tvDiscount.text = "${product.price.discount}%"
-                    binding.btnGoToBrand.text = product.title
-                    binding.tvDescription.text = product.description
-
-                    infoAdapter.submitList(product.info)
-                    binding.tvIngredientsValue.text = product.ingredients
-                    imagePagerAdapter.submitList(product.images)
-
-                    binding.tvIngredientsValue.doOnLayout {
-                        binding.tvIngredientsMore.isVisible = binding.tvIngredientsValue.isEllipsized()
-                    }
-                    binding.btnPrice.text = product.price.priceWithDiscount
-                    binding.btnOldPrice.text = product.price.price
-                }
+        binding.ivFavorite.setOnClickListener {
+            if (args.product.isFavorite) {
+                viewModel.removeProductFromFavorites(args.product)
+                binding.ivFavorite.setImageResource(R.drawable.ic_heart_default)
+            } else {
+                viewModel.addProductToFavorites(args.product)
+                binding.ivFavorite.setImageResource(R.drawable.ic_heart_active)
             }
+            args.product.isFavorite = !args.product.isFavorite
+        }
+
+        binding.btnBack.setOnClickListener {
+            findNavController().navigateUp()
         }
     }
 }

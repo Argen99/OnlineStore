@@ -10,7 +10,5 @@ data class ProductModel(
     val available: Int,
     val description: String,
     val info: List<InfoModel>,
-    val ingredients: String,
-    var isFavorite: Boolean = false,
-    var images: List<Int> = emptyList()
+    val ingredients: String
 )

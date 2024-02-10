@@ -1,14 +1,14 @@
 package com.example.onlinestore.ui.fragments.main.catalog
 
 import androidx.lifecycle.viewModelScope
-import com.example.domain.model.ProductModel
-import com.example.domain.use_case.AddToFavoritesUseCase
+import com.example.domain.use_case.AddProductToFavoritesUseCase
 import com.example.domain.use_case.GetProductsUseCase
-import com.example.domain.use_case.RemoveFromFavoritesUseCase
+import com.example.domain.use_case.RemoveProductFromFavoritesUseCase
 import com.example.onlinestore.core.base.BaseViewModel
 import com.example.onlinestore.core.ui.UIState
 import com.example.onlinestore.core.utils.Object.CATEGORIES
-import com.example.onlinestore.core.utils.Object.IMAGES_MAP
+import com.example.onlinestore.ui.model.ProductUI
+import com.example.onlinestore.ui.model.toUI
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -17,43 +17,32 @@ import kotlinx.coroutines.launch
 
 class CatalogViewModel(
     private val getProductsUseCase: GetProductsUseCase,
-    private val addToFavoritesUseCase: AddToFavoritesUseCase,
-    private val removeFromFavoritesUseCase: RemoveFromFavoritesUseCase
+    private val addToFavoritesUseCase: AddProductToFavoritesUseCase,
+    private val removeFromFavoritesUseCase: RemoveProductFromFavoritesUseCase
 ) : BaseViewModel() {
 
-    private val _mainData = MutableStateFlow<List<ProductModel>>(emptyList())
-    private val _productsState = mutableUiStateFlow<List<ProductModel>>()
-    private val _currentProduct = MutableStateFlow<ProductModel?>(null)
-    val currentProduct = _currentProduct.asStateFlow()
+    private val _mainData = MutableStateFlow<List<ProductUI>>(emptyList())
+    private val _productsState = mutableUiStateFlow<List<ProductUI>>()
     val productsState = _productsState.asStateFlow()
 
     init {
+        getProducts()
+    }
+
+    private fun getProducts() {
         viewModelScope.launch {
-            getProductsUseCase().gatherRequest(_productsState, _mainData)
+            getProductsUseCase().gatherRequest(_productsState, _mainData) { data ->
+                data.map { it.toUI().copy(images = it.id.getImagesById()) }
+            }
         }
     }
 
-    fun onItemClick(id: String) {
-        var images = emptyList<Int>()
-        IMAGES_MAP.forEach {
-            if (id == it.key)
-                images = it.value
-        }
-        _currentProduct.update {
-            _mainData.value.find { model ->
-                id == model.id
-            }?.copy(
-                images = images
-            )
-        }
-    }
-
-    fun onFavoriteClick(product: ProductModel) {
+    fun onFavoriteClick(product: ProductUI) {
         viewModelScope.launch(Dispatchers.IO) {
             if (product.isFavorite) {
-                removeFromFavoritesUseCase(product)
+                addToFavoritesUseCase(product.toDomain())
             } else {
-                addToFavoritesUseCase(product)
+                removeFromFavoritesUseCase(product.toDomain())
             }
         }
     }

@@ -17,4 +17,5 @@
     <dimen name="placeholder_text">16sp</dimen>
     <dimen name="link_text">10sp</dimen>
     <dimen name="radio_btn_margin_between_items">8dp</dimen>
+    <dimen name="vertical_divider_width">1dp</dimen>
 </resources>

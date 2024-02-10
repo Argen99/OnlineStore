@@ -20,6 +20,7 @@
             app:titleTextColor="@color/black">
 
             <ImageButton
+                android:id="@+id/btn_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -133,6 +134,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -170,7 +172,7 @@
                     android:textColor="@color/black"
                     tools:text="412" />
 
-                <com.google.android.material.textview.MaterialTextView
+                <com.example.onlinestore.ui.view.ObliqueStrikeTextView
                     android:id="@+id/tv_old_price"
                     style="@style/Text1"
                     android:layout_width="wrap_content"
@@ -203,10 +205,10 @@
 
             <LinearLayout
                 android:id="@+id/product_desc_container"
-                android:layout_marginTop="16dp"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_go_to_brand"
@@ -242,8 +244,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/grey"
-                android:text="@string/hide" />
+                android:text="@string/hide"
+                android:textColor="@color/grey" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_product_info"
@@ -261,25 +263,25 @@
                 android:overScrollMode="never" />
 
             <FrameLayout
-                android:layout_marginTop="32dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp">
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tv_ingredients"
                     style="@style/Title1"
-                    android:layout_gravity="start|center_vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="start|center_vertical"
                     android:text="@string/ingredients"
                     android:textColor="@color/black" />
 
                 <ImageButton
-                    android:src="@drawable/ic_copy"
-                    android:background="@color/white"
-                    android:layout_gravity="end|center_vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:background="@color/white"
+                    android:src="@drawable/ic_copy"
                     tools:ignore="ContentDescription" />
 
             </FrameLayout>

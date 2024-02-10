@@ -4,6 +4,6 @@ import androidx.annotation.DrawableRes
 
 data class ProfileCard(
     val title: String,
-    val value: String? = null,
+    val value: Int? = null,
     @DrawableRes val icon: Int,
 )

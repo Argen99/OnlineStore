@@ -2,6 +2,8 @@
 plugins {
     alias(libs.plugins.agp.application)
     alias(libs.plugins.kotlin.android)
+    id(libs.plugins.kotlin.serialization.get().pluginId)
+    id(libs.plugins.navigation.safeArgs.get().pluginId)
 }
 
 android {
@@ -54,4 +56,5 @@ dependencies {
     implementation(libs.bundles.navigation)
     implementation(libs.koin.android)
     implementation(libs.coroutines.android)
+    implementation(libs.serialization)
 }

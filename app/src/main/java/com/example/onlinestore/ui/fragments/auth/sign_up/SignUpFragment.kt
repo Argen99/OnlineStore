@@ -2,18 +2,20 @@ package com.example.onlinestore.ui.fragments.auth.sign_up
 
 import android.view.View.OnFocusChangeListener
 import android.widget.EditText
+import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.example.domain.model.UserData
 import com.example.onlinestore.R
 import com.example.onlinestore.core.base.BaseFragment
 import com.example.onlinestore.core.extensions.activityNavController
 import com.example.onlinestore.core.extensions.isValidAndNotEmpty
 import com.example.onlinestore.core.extensions.isValidOrEmpty
 import com.example.onlinestore.core.extensions.navigateSafely
+import com.example.onlinestore.core.utils.Object.KEY_IS_AUTHORIZED
 import com.example.onlinestore.core.utils.Object.MAX_PHONE_NUMBER_LENGTH
 import com.example.onlinestore.core.utils.PhoneNumberTextWatcher
 import com.example.onlinestore.databinding.FragmentSignUpBinding
+import com.example.onlinestore.ui.model.UserDataUI
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SignUpFragment :
@@ -26,13 +28,16 @@ class SignUpFragment :
         textChangeListeners()
         focusChangeListeners()
         binding.btnLogin.setOnClickListener {
-            val data = UserData(
+            val data = UserDataUI(
                 binding.etUserName.text.toString(),
                 binding.etUserSurname.text.toString(),
                 binding.etUserPhone.text.toString()
             )
-            viewModel.saveData(data)
-            activityNavController().navigateSafely(R.id.action_global_mainFlowFragment)
+
+            activityNavController().navigateSafely(
+                R.id.action_global_mainFlowFragment,
+                bundleOf(KEY_IS_AUTHORIZED to viewModel.isAuthorized(data))
+            )
         }
     }
 

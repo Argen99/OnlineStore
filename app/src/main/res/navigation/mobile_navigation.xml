@@ -1,24 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
     tools:ignore="InvalidNavigation">
 
     <action
         android:id="@+id/action_global_mainFlowFragment"
         app:destination="@id/mainFlowFragment"
+        app:popUpTo="@id/mobile_navigation" >
+        <argument
+            android:name="isAuthorized"
+            app:argType="boolean"
+            android:defaultValue="false"/>
+    </action>
+
+    <action
+        android:id="@+id/action_global_authFlowFragment"
+        app:destination="@id/authFlowFragment"
         app:popUpTo="@id/mobile_navigation" />
 
     <fragment
         android:id="@+id/authFlowFragment"
         android:name="com.example.onlinestore.ui.fragments.auth.AuthFlowFragment"
         android:label="fragment_auth_flow"
-        tools:layout="@layout/fragment_auth_flow" />
+        tools:layout="@layout/fragment_auth_flow"/>
 
     <fragment
         android:id="@+id/mainFlowFragment"
         android:name="com.example.onlinestore.ui.fragments.main.MainFlowFragment"
         android:label="fragment_main_flow"
-        tools:layout="@layout/fragment_main_flow" />
+        tools:layout="@layout/fragment_main_flow">
+        <argument
+            android:name="isAuthorized"
+            app:argType="boolean"
+            android:defaultValue="false"/>
+
+    </fragment>
 </navigation>

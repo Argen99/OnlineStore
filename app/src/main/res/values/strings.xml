@@ -21,4 +21,11 @@
     <string name="characteristic">Характеристики</string>
     <string name="personal_office">Личный кабинет</string>
     <string name="exit">Выйти</string>
+    <string name="favorite">Избранное</string>
+    <string name="feedback">Обратная связь</string>
+    <string name="stores">Магазины</string>
+    <string name="offer">Оферта</string>
+    <string name="return_of_goods">Возврат товара</string>
+    <string name="products">Товары</string>
+    <string name="brands">Бренды</string>
 </resources>

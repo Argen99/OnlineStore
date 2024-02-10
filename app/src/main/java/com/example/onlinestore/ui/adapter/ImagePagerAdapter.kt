@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.onlinestore.databinding.ItemImageBinding
 
-class ImagePagerAdapter :
+class ImagePagerAdapter(
+    val onItemClick: (() -> Unit)? = null
+) :
     ListAdapter<Int, ImagePagerAdapter.ImagePagerViewHolder>(callback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ImagePagerViewHolder(
@@ -21,6 +23,12 @@ class ImagePagerAdapter :
     inner class ImagePagerViewHolder(val binding: ItemImageBinding) : ViewHolder(binding.root) {
         fun onBind(image: Int) {
             binding.productImage.setImageResource(image)
+        }
+
+        init {
+            itemView.setOnClickListener {
+                onItemClick?.invoke()
+            }
         }
     }
 

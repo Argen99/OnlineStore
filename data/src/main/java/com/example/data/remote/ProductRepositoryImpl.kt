@@ -8,7 +8,6 @@ import com.example.domain.model.ProductModel
 import com.example.domain.repository.ProductRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import java.lang.Exception
 
 class ProductRepositoryImpl(
     private val apiService: ProductApiService,
@@ -19,7 +18,7 @@ class ProductRepositoryImpl(
         apiService.getProducts().items.map { it.toDomain() }
     }
 
-    override suspend fun getFavorites(): Flow<List<ProductModel>> {
+    override suspend fun getFavoriteProducts(): Flow<List<ProductModel>> {
         return productsDao.getProducts().map { data -> data.map { it.toDomain() } }
     }
 
@@ -31,12 +30,11 @@ class ProductRepositoryImpl(
         productsDao.deleteProduct(product.toDto())
     }
 
-    override suspend fun getFavoritesCount(): Int {
-        return try {
-            productsDao.getCount()
-        } catch (e: Exception) {
-            e.printStackTrace()
-            0
-        }
+    override suspend fun getFavoritesCount(): Flow<Int> {
+        return productsDao.getCount()
+    }
+
+    override suspend fun clearFavoriteProducts() {
+        productsDao.deleteAll()
     }
 }

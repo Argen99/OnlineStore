@@ -8,15 +8,15 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import androidx.viewpager2.widget.ViewPager2
-import com.example.domain.model.ProductModel
 import com.example.onlinestore.R
-import com.example.onlinestore.core.utils.Object.IMAGES_MAP
 import com.example.onlinestore.databinding.ItemProductBinding
+import com.example.onlinestore.ui.model.ProductUI
 
 class ProductAdapter(
-    val onFavoriteClick: (product: ProductModel) -> Unit,
-    val onItemClick: (id: String) -> Unit,
-) : ListAdapter<ProductModel, ProductAdapter.ProductViewHolder>(callback) {
+    val onFavoriteClick: (product: ProductUI) -> Unit,
+    val onItemClick: ((product: ProductUI) -> Unit)? = null,
+    val isFavorites: Boolean = false
+) : ListAdapter<ProductUI, ProductAdapter.ProductViewHolder>(callback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ProductViewHolder(
         ItemProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -30,11 +30,16 @@ class ProductAdapter(
         ViewHolder(binding.root) {
 
         private val imagePagerAdapter: ImagePagerAdapter by lazy {
-            ImagePagerAdapter()
+            ImagePagerAdapter {
+                onItemClick?.invoke(getItem(absoluteAdapterPosition))
+            }
         }
 
         @SuppressLint("SetTextI18n")
-        fun onBind(product: ProductModel) = with(binding) {
+        fun onBind(product: ProductUI) = with(binding) {
+            if (isFavorites) {
+                product.isFavorite = true
+            }
             tvOldPrice.text = product.price.price
             tvProductPrice.text = "${product.price.priceWithDiscount} ${product.price.unit}"
             tvProductTitle.text = product.title
@@ -45,17 +50,15 @@ class ProductAdapter(
             )
             if (product.feedback != null) {
                 ratingContainer.isVisible = true
-                tvRating.text = product.feedback!!.rating.toString()
-                tvReviewsCount.text = "(${product.feedback!!.count})"
+                tvRating.text = product.feedback.rating.toString()
+                tvReviewsCount.text = "(${product.feedback.count})"
             }
 
             vpImage.apply {
                 adapter = imagePagerAdapter
                 orientation = ViewPager2.ORIENTATION_HORIZONTAL
             }
-            IMAGES_MAP.forEach {
-                if ((product.id == it.key)) imagePagerAdapter.submitList(it.value)
-            }
+            imagePagerAdapter.submitList(product.images)
             springDotsIndicator.attachTo(vpImage)
         }
 
@@ -69,18 +72,18 @@ class ProductAdapter(
                 onFavoriteClick(product)
             }
 
-            binding.root.setOnClickListener {
-                onItemClick(getItem(absoluteAdapterPosition).id)
+            itemView.setOnClickListener {
+                onItemClick?.invoke(getItem(absoluteAdapterPosition))
             }
         }
     }
 
     companion object {
-        val callback = object : DiffUtil.ItemCallback<ProductModel>() {
-            override fun areItemsTheSame(oldItem: ProductModel, newItem: ProductModel) =
+        val callback = object : DiffUtil.ItemCallback<ProductUI>() {
+            override fun areItemsTheSame(oldItem: ProductUI, newItem: ProductUI) =
                 oldItem.id == newItem.id
 
-            override fun areContentsTheSame(oldItem: ProductModel, newItem: ProductModel) =
+            override fun areContentsTheSame(oldItem: ProductUI, newItem: ProductUI) =
                 oldItem == newItem
         }
     }

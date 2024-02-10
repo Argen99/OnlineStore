@@ -1,10 +1,10 @@
 package com.example.domain.repository
 
-import com.example.domain.model.UserData
-import kotlinx.coroutines.flow.Flow
+import com.example.domain.model.UserDataModel
 
 interface UserRepository {
 
-    fun getUserData(): UserData
-    fun saveUserData(data: UserData)
+    fun getUserData(): UserDataModel?
+    fun saveUserData(data: UserDataModel)
+    fun clearUserData()
 }

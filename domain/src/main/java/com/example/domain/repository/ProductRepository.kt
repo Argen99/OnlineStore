@@ -7,8 +7,9 @@ import kotlinx.coroutines.flow.Flow
 interface ProductRepository {
 
     suspend fun getProducts() : Flow<Either<List<ProductModel>>>
-    suspend fun getFavorites() : Flow<List<ProductModel>>
+    suspend fun getFavoriteProducts() : Flow<List<ProductModel>>
     suspend fun addToFavorites(product: ProductModel)
     suspend fun removeFromFavorites(product: ProductModel)
-    suspend fun getFavoritesCount(): Int
+    suspend fun getFavoritesCount(): Flow<Int>
+    suspend fun clearFavoriteProducts()
 }

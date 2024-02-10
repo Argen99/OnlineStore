@@ -7,6 +7,7 @@ import com.example.data.local.room.ProductsDao
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 import com.example.data.local.prefs.UserPreferences
+import com.example.data.local.prefs.UserRepositoryImpl
 import com.example.data.remote.ProductRepositoryImpl
 import com.example.data.remote.ProductApiService
 import com.example.domain.repository.ProductRepository
@@ -23,8 +24,8 @@ val dataModule = module {
     singleOf(::ProductRepositoryImpl) {
         bind<ProductRepository>()
     }
-
-    singleOf(::UserPreferences) {
+    singleOf(::UserPreferences)
+    singleOf(::UserRepositoryImpl) {
         bind<UserRepository>()
     }
     factoryOf(::provideOkHttpClient)
